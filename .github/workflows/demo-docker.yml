@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - id: greet
-        uses: ./github/actions/greet-docker
+        uses: ./.github/actions/greet-docker
         with:
           who: Ayoub
       - env:
