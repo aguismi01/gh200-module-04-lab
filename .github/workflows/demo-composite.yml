@@ -1,16 +1,22 @@
 name: Demo composite action
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      who:
+        description: The person to greet
+        type: string
+        required: true
 
 jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
       - id: greet
-        uses: ./.github/actions/gree-composite
+        uses: ./.github/actions/greet-composite
         with:
-          who: Ayoub
+          who: ${{ inputs.who }}
       - env:
           GREETING: ${{ steps.greet.outputs.greeting }}
         run: echo "$GREETING"
