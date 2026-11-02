@@ -1,0 +1,16 @@
+name: Demo Docker action
+
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - id: greet
+        uses: ./github/actions/greet-docker
+        with:
+          who: Ayoub
+      - env:
+          GREETING: ${{ steps.greet.outputs.greeting }}
+        run: echo "$GREETING"
