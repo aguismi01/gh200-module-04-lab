@@ -1,0 +1,15 @@
+name: Greet JS
+description: Produce a greeting using javascript
+
+inputs:
+  who: 
+    description: Person to greet
+    required: true
+
+outputs:
+  greeting:
+    description: Greeting text
+
+runs:
+  using: node24
+  main: index.js
