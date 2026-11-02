@@ -1,0 +1,22 @@
+name: Greet composite
+description: Produce a greeting using workflow steps
+
+inputs:
+  who:
+    description: Person to greet
+    required: true
+outputs:
+  greeting:
+    description: Greeting text
+    value: ${{ steps.make.outputs.text }}
+
+runs:
+  using: composite
+  steps:
+    - id: make
+      shell: bash
+      env:
+        WHO: ${{ inputs.who }}
+      run: |
+        test -n "$WHO" || { echo "::error::Input who is required"; exit 1; }
+        echo "text=Hello, $WHO" >> "$GITHUB_OUTPUT"
